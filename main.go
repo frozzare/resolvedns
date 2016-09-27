@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/frozzare/go-util/httputil"
 )
@@ -30,7 +31,13 @@ func main() {
 				fmt.Println("No response from " + os.Args[1])
 			} else {
 				for _, answer := range res.Answer {
-					fmt.Println(fmt.Sprintf("Response from %s with TTL %d", answer.Data, answer.TTL))
+					data := answer.Data
+
+					if strings.HasSuffix(data, ".") {
+						data = data[:len(data)-1]
+					}
+
+					fmt.Println(fmt.Sprintf("Response from %s with TTL %d", data, answer.TTL))
 				}
 			}
 		}
