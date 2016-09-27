@@ -30,7 +30,7 @@ func main() {
 				fmt.Println("No response from " + os.Args[1])
 			} else {
 				for _, answer := range res.Answer {
-					fmt.Println("Response from " + answer.Data)
+					fmt.Println(fmt.Sprintf("Response from %s with TTL %d", answer.Data, answer.TTL))
 				}
 			}
 		}
