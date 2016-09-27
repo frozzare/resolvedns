@@ -8,7 +8,12 @@ import (
 )
 
 type response struct {
-	Comment string
+	Answer []struct {
+		Name string
+		Type int
+		TTL  int
+		Data string
+	}
 }
 
 func main() {
@@ -21,10 +26,12 @@ func main() {
 		if err != nil {
 			fmt.Println(err)
 		} else {
-			if res.Comment == "" {
+			if len(res.Answer) == 0 || res.Answer[0].Name == "." {
 				fmt.Println("No response from " + os.Args[1])
 			} else {
-				fmt.Println(res.Comment)
+				for _, answer := range res.Answer {
+					fmt.Println("Response from " + answer.Data)
+				}
 			}
 		}
 	}
