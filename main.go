@@ -37,7 +37,7 @@ func main() {
 						data = data[:len(data)-1]
 					}
 
-					fmt.Println(fmt.Sprintf("Response from %s with TTL %d", data, answer.TTL))
+					fmt.Println(fmt.Sprintf("Using %s with TTL %d", data, answer.TTL))
 				}
 			}
 		}
